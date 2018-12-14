@@ -5,24 +5,45 @@
                 var zoekvenster = document.getElementById("zoekterm");
                 var term = zoekvenster.value;
                 var xhr = new XMLHttpRequest();
-
                 xhr.open("GET","http://localhost:8082/api/applicant/search/"+term,true);
                 xhr.onreadystatechange = function (){
                     if(this.readyState == 4){
-                        var a = JSON.parse(this.responseText);
+                        var lijstMetApplicanten = JSON.parse(this.responseText);
+                        console.log(lijstMetApplicanten);
+                        var deLijst = "";
+                        for(var x = 0; x < lijstMetApplicanten.length; x++){
+                            deLijst += "<p>"+lijstMetApplicanten[x].name+"</p><br>";
+                        }
+                        document.getElementById("hetantwoord").innerHTML = deLijst;
 //                        console.log(a[0].name);
                     }
                 }
-                
                 xhr.send();
             }
-
         </script>
         <style>
-        
+            p#jojo{
+                background-color: aqua;
+                padding:15px;
+                display: inline-block;
+                margin : 0px;
+                font-family: 'Comic Sans MS';
+            }
+            .antwoorden{
+                background-color: green;
+            }
+            p:hover{
+                background-color: yellow;
+            }
+            p > div{
+                background-color: red;
+            }
         </style>
     </head>
     <body>
+        <p id=jojo>go</p>
         <input id=zoekterm type="text" onkeyup="zoeken()">
+        <div class=antwoorden id=hetantwoord></div>
+        <p> hallo in p</p>
     </body>
 </html>
