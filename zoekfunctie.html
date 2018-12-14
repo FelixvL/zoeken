@@ -2,21 +2,27 @@
     <head>
         <script>
             function zoeken(){
-                console.log("voorbeeld");
+                var zoekvenster = document.getElementById("zoekterm");
+                var term = zoekvenster.value;
                 var xhr = new XMLHttpRequest();
-                xhr.onload = function (){
-                    alert();
-                }
+
                 xhr.open("GET","http://localhost:8082/api/applicant",true);
+                xhr.onreadystatechange = function (){
+                    if(this.readyState == 4){
+                        var a = JSON.parse(this.responseText);
+//                        console.log(a[0].name);
+                    }
+                }
+                
                 xhr.send();
             }
+
         </script>
         <style>
         
         </style>
     </head>
     <body>
-        <button>Verstuur</button>
-        <input type="text" onkeydown="zoeken()">
+        <input id=zoekterm type="text" onkeyup="zoeken()">
     </body>
 </html>
