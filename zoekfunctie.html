@@ -2,7 +2,13 @@
     <head>
         <script>
             function zoeken(){
-                alert();
+                console.log("voorbeeld");
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function (){
+                    alert();
+                }
+                xhr.open("GET","http://localhost:8082/api/applicant",true);
+                xhr.send();
             }
         </script>
         <style>
@@ -11,6 +17,6 @@
     </head>
     <body>
         <button>Verstuur</button>
-        <input type="text" onkeydown="zoeeken()">
+        <input type="text" onkeydown="zoeken()">
     </body>
 </html>
